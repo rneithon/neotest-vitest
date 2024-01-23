@@ -69,14 +69,14 @@ function adapter.is_test_file(file_path)
     is_test_file = true
   end
 
-  for _, x in ipairs({ "spec", "test" }) do
-    for _, ext in ipairs({ "js", "jsx", "coffee", "ts", "tsx" }) do
-      if string.match(file_path, "%." .. x .. "%." .. ext .. "$") then
-        is_test_file = true
-        goto matched_pattern
-      end
+  -- for _, x in ipairs({ "spec", "test" }) do
+  for _, ext in ipairs({ "js", "jsx", "coffee", "ts", "tsx" }) do
+    if string.match(file_path, "%." .. ext .. "$") then
+      is_test_file = true
+      goto matched_pattern
     end
   end
+  -- end
   ::matched_pattern::
   return is_test_file and hasVitestDependency(file_path)
 end
